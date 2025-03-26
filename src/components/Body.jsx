@@ -5,7 +5,7 @@ import Sidebar from "./Sidebar.jsx";
 const Body = ({user, stats}) => {
     return (
         <div className={`body`}>
-            <Sidebar user={user} stats={stats}/>
+            <Sidebar />
             <Content/>
         </div>
     );
