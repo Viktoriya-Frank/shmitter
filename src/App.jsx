@@ -24,10 +24,23 @@ function App() {
         setUser(prevState => ({...prevState, name: name || prevState.name}));
     }
 
+    const changeFollowers = sum => {
+        setStats(prevState => ({...prevState, followers: prevState.followers + sum < 0 ? 0 : prevState.followers + sum}))
+    }
+
+    const changeFollowing = sum => {
+        setStats(prevState => ({...prevState, following: prevState.following + sum < 0 ? 0 : prevState.following + sum}))
+    }
+
   return (
    <div className={`app`}>
        <TwitterContext value={{
-           user, stats, changeAvatar, changeName
+           user,
+           stats,
+           changeAvatar,
+           changeName,
+           changeFollowers,
+           changeFollowing
        }}>
        <Navigation />
        <Body/>
