@@ -1,31 +1,34 @@
 import React, {useContext} from 'react';
-import Avatar from "./Avatar.jsx";
 import {TwitterContext} from "../utils/context.jsx";
 
 const Stats = () => {
-    const {user, stats, changeFollowers, changeFollowing} = useContext(TwitterContext);
+    const {user, stats, changeStats} = useContext(TwitterContext);
 
     return (
-        <div className={`user-stats`}>
+        <div className="user-stats">
             <div>
-                <Avatar user={user}/>
-                {user.name}
+                <img src={user.avatar} alt="User Avatar"/>
+                <p>{user.name}</p>
             </div>
-            <div className={`stats`}>
+            <div className="stats">
                 <div
-                    onClick={() => changeFollowers(1)}
+                    onClick={() => changeStats("followers", 1)}
                     onContextMenu={e => {
                         e.preventDefault();
-                        changeFollowers(-1);
+                        changeStats("followers", -1);
                     }}
-                >Followers: {stats.followers}</div>
+                >
+                    Followers: {stats.followers}
+                </div>
                 <div
-                    onClick={() => changeFollowing(1)}
+                    onClick={() => changeStats("following", 1)}
                     onContextMenu={e => {
                         e.preventDefault();
-                        changeFollowing(-1);
+                        changeStats("following", -1);
                     }}
-                >Following: {stats.following}</div>
+                >
+                    Following: {stats.following}
+                </div>
             </div>
         </div>
     );

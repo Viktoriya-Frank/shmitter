@@ -1,9 +1,8 @@
-
 import './App.css'
 import Navigation from "./components/Navigation.jsx";
 import Body from "./components/Body.jsx";
 import {useState} from "react";
-import {TwitterContext} from "./utils/context.jsx";
+import {TwitterContext, TwitterProvider} from "./utils/context.jsx";
 
 function App() {
     const [user, setUser] = useState({
@@ -24,29 +23,30 @@ function App() {
         setUser(prevState => ({...prevState, name: name || prevState.name}));
     }
 
-    const changeFollowers = sum => {
-        setStats(prevState => ({...prevState, followers: prevState.followers + sum < 0 ? 0 : prevState.followers + sum}))
-    }
+    const changeStats = (type, sum) => {
+        setStats(prevState => ({
+            ...prevState,
+            [type]: Math.max(0, prevState[type] + sum)
+        }));
+    };
 
-    const changeFollowing = sum => {
-        setStats(prevState => ({...prevState, following: prevState.following + sum < 0 ? 0 : prevState.following + sum}))
-    }
 
-  return (
-   <div className={`app`}>
-       <TwitterContext value={{
-           user,
-           stats,
-           changeAvatar,
-           changeName,
-           changeFollowers,
-           changeFollowing
-       }}>
-       <Navigation />
-       <Body/>
-       </TwitterContext>
-   </div>
-  )
+    return (
+        <div className={`app`}>
+            <TwitterContext value={{
+                user,
+                stats,
+                changeAvatar,
+                changeName,
+                changeStats
+            }}>
+
+                <Navigation/>
+                <Body/>
+
+            </TwitterContext>
+        </div>
+    )
 }
 
-export default App
+export default App;
