@@ -1,7 +1,7 @@
 import React from 'react';
 import Avatar from "./Avatar.jsx";
 import {useDispatch, useSelector} from "react-redux";
-import {changeStats} from "../actions/statsAction.js";
+import {changeStats} from "../features/stats/statsSlice.js";
 
 const Stats = () => {
     const {name} = useSelector((state) => state.user);
