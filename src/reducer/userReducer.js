@@ -2,10 +2,8 @@ import {CHANGE_AVATAR, CHANGE_NAME} from "../actions/userAction.js";
 
 
 const initialState = {
-    user: {
         name: 'Monster',
         avatar: 'https://gravatar.com/avatar/000?d=monsterid'
-    }
 };
 
 export const userReducer = (state = initialState, action) => {
